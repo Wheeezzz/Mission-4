@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;700&display=swap");
+:root {
+  --primary-color: #e8a362;
+  --secondary-color: #f3f0b6;
+  --light-color: #fff;
+  --tertiary-color: #a19c9c;
+  --danger-color: #ef2936;
+  --general-spacer: 2rem;
+  --minimum-height: 50vh;
+  --spacer: 1.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Kanit", sans-serif;
+}
+
+body {
+  display: grid;
+  grid-gap: var(--general-spacer);
+  grid: "header header header header" auto ". projects tasks ." auto/1fr minmax(256px, 420px) minmax(320px, 768px) 1fr;
+  background-color: var(--secondary-color);
+}
+
+.profile-img {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 70%;
+  z-index: 1;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.app-title {
+  grid-area: header;
+  text-align: center;
+  color: var(--light-color);
+  font-weight: bolder;
+  font-size: 3rem;
+  margin-top: 5rem;
+  margin-bottom: 0;
+}
+
+.projects {
+  grid-area: projects;
+  min-height: var(--minimum-height);
+  background-color: var(--light-color);
+  border-radius: 32px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.projects-title {
+  background-color: var(--primary-color);
+  padding: var(--spacer);
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  color: var(--light-color);
+}
+.projects-body {
+  padding: 0 var(--spacer);
+  color: rgb(143, 134, 134);
+  margin-bottom: var(--spacer);
+}
+.projects-list {
+  padding-left: 1rem;
+  line-height: 3rem;
+  list-style-type: circle;
+}
+.projects__item {
+  font-size: 1.2rem;
+}
+.projects__item--active {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.projects__item:hover {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.projects-form {
+  margin-top: var(--spacer);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.projects-form-input {
+  margin-bottom: var(--spacer);
+  border: 0;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  border-bottom: 2px solid var(--tertiary-color);
+  text-align: center;
+  padding: 0.5rem 0;
+  outline: 0;
+}
+.projects-form-input:focus {
+  border-bottom-width: 4px;
+}
+.projects-form-input:focus::-moz-placeholder {
+  opacity: 0.2;
+}
+.projects-form-input:focus::placeholder {
+  opacity: 0.2;
+}
+.projects-form-button {
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 0;
+  font-size: 1.5rem;
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+.projects--delete-button {
+  display: block;
+  margin: 1rem auto;
+  font-size: 1.2rem;
+  border: 0;
+  color: var(--danger-color);
+  cursor: pointer;
+  background: none;
+  font-weight: 500;
+}
+.projects--delete-button:hover {
+  color: var(--light-color);
+  background-color: var(--danger-color);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.todos {
+  grid-area: tasks;
+}
+.todos-header {
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacer);
+  border-top-right-radius: 32px;
+}
+.todos-count {
+  margin-left: 1rem;
+}
+.todos-body {
+  background-color: var(--light-color);
+  padding: var(--spacer) var(--spacer);
+  min-height: var(--minimum-height);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-bottom-left-radius: 32px;
+  position: relative;
+}
+.todos-container {
+  margin-bottom: 0.8rem;
+  border: 1px solid rgb(236, 233, 233);
+  padding: 1rem;
+}
+.todos-container:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.todos-task-details {
+  margin-left: var(--general-spacer);
+}
+.todos-tasks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todos-item {
+  cursor: pointer;
+  margin-right: 1rem;
+  transform: scale(1);
+  transition: transform 300ms ease-in-out;
+}
+.todos-item:hover {
+  transform: scale(1.5);
+}
+.todos-label {
+  cursor: pointer;
+  padding: 0 0.2rem;
+  position: relative;
+}
+.todos-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+  height: 3px;
+  background: var(--tertiary-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 150ms ease-in-out;
+}
+.todos-item:checked + .todos-label::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.todos-item:checked + .todos-label {
+  opacity: 0.3;
+}
+.todos-delete {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+.todos-edit {
+  color: green;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+.todos-edit:hover {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.todos-creator {
+  position: relative;
+}
+.todos-close {
+  position: absolute;
+  color: #ddd7ce;
+  top: 0;
+  right: 1rem;
+  font-size: 4rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+.todos-form {
+  padding: 3rem;
+  width: 80%;
+  margin: auto;
+}
+.todos-form-inputs input,
+.todos-form-inputs select {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.todos-form-inputs input:focus,
+.todos-form-inputs select:focus {
+  outline: 0;
+  border-color: rgb(123, 247, 123);
+}
+.todos-form-inputs input:focus::-moz-placeholder, .todos-form-inputs select:focus::-moz-placeholder {
+  opacity: 0.2;
+}
+.todos-form-inputs input:focus::placeholder,
+.todos-form-inputs select:focus::placeholder {
+  opacity: 0.2;
+}
+.todos-form-inputs label {
+  display: block;
+  margin: 1rem 0 0.5rem 0;
+}
+.todos-form-btn {
+  display: block;
+  margin: var(--spacer) auto;
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 0;
+  font-size: 1.2rem;
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+.todos-new-task-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border: 0;
+  border-radius: 40px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  left: 35%;
+  bottom: -25px;
+}
+.todos small {
+  color: red;
+}
+
+.hide {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
